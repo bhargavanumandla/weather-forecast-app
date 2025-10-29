@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WeatherApp</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <script>
+      // Simple loader visibility toggle
+      document.addEventListener("turbo:submit-start", () => {
+          document.getElementById("loading")?.style.setProperty("display", "block");
+      });
+      document.addEventListener("turbo:submit-end", () => {
+          document.getElementById("loading")?.style.setProperty("display", "none");
+      });
+  </script>
+</head>
+
+<body>
+<% if flash[:alert] %>
+  <div class="flash alert"><%= flash[:alert] %></div>
+<% elsif flash[:notice] %>
+  <div class="flash notice"><%= flash[:notice] %></div>
+<% end %>
+
+<%= yield %>
+</body>
+</html>

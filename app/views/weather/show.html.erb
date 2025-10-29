@@ -1,0 +1,20 @@
+<h1>Forecast</h1>
+
+<% if @forecast.present? %>
+  <div style="max-width: 400px; margin: 0 auto; background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+    <p><strong>Location:</strong> <%= @forecast[:location_name] %></p>
+    <p><strong>Temperature:</strong> <%= @forecast[:current_temp_c] %> °C / <%= @forecast[:current_temp_f] %> °F</p>
+    <p><strong>Condition:</strong> <%= @forecast[:condition] %></p>
+    <p><small><strong>Fetched at (UTC):</strong> <%= @forecast[:fetched_at].strftime("%Y-%m-%d %H:%M:%S") %></small></p>
+
+    <% if @forecast[:from_cache] %>
+      <p style="color: green;">(Served from cache)</p>
+    <% else %>
+      <p style="color: blue;">(Fresh data)</p>
+    <% end %>
+
+    <p><%= link_to "New search", root_path %></p>
+  </div>
+<% else %>
+  <p>No forecast available.</p>
+<% end %>
