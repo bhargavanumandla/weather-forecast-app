@@ -1,6 +1,6 @@
 class WeatherController < ApplicationController
   def index
-    # show simple search form
+    # simple search form
   end
 
   def show
@@ -10,7 +10,6 @@ class WeatherController < ApplicationController
       render :index and return
     end
 
-    # Use Geocoder to normalize (extract postal code if possible)
     geocoded = Geocoder.search(address).first
     cache_key = if geocoded && geocoded.postal_code.present?
                   "weather:zip:#{geocoded.postal_code}"
